@@ -46,6 +46,15 @@ module.exports = function(app){
 
 	});
 
+	app.get("/landing", (req, res) => {
+
+			  res.render("landing", { 
+			    apiUrl: config.apiUrl
+			  });
+
+	});
+
+
 	app.get("/dashboard-raw", (req, res) => {
 	   
 	  res.render("dashboard", { 

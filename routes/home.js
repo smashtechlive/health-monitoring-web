@@ -14,60 +14,11 @@ module.exports = function(app){
 	    res.send(html);
 	});
 
-	app.get("/login", (req, res) => {
-		res.cookie('user', req.query.user, { expires: new Date(Date.now() + 3*60*60*1000) });  //3 hr cookie to protect stats page 
-		res.cookie('pass', req.query.pass, { expires: new Date(Date.now() + 3*60*60*1000) });  //3 hr cookie to protect stats page 
-    res.redirect('/dashboard');
-	});
-
-	app.get("/dashboard", (req, res) => {
-	   
-		if(req.cookies.user && req.cookies.pass){
-
-			if(req.cookies.user == 'smashtech' && (req.cookies.pass == 'hk8svT$!' || req.cookies.pass == 'hk8svT$')){
-
-			  res.render("dashboard-2", { 
-			    apiUrl: config.apiUrl
-			    , year: req.query.year
-			    , month: req.query.month
-			    , day: req.query.day
-			    , hour: req.query.hour
-			    , rowType: req.query.rowType 
-			    , sort: req.query.sort 
-			    , breakdown: req.query.breakdown 
-			    , limit: req.query.limit 
-			  });
-			} 
-			else 
-			res.json({"err": "Please provide a correct user and pass."});
-		}
-		else 
-			res.json({"err": "Please provide a user and pass."});
-
-	});
-
 	app.get("/landing", (req, res) => {
 
 			  res.render("landing", { 
 			    apiUrl: config.apiUrl
 			  });
-
-	});
-
-
-	app.get("/dashboard-raw", (req, res) => {
-	   
-	  res.render("dashboard", { 
-	    apiUrl: config.apiUrl
-	    , year: req.query.year
-	    , month: req.query.month
-	    , day: req.query.day
-	    , hour: req.query.hour
-	    , rowType: req.query.rowType 
-	    , sort: req.query.sort 
-	    , breakdown: req.query.breakdown 
-	    , limit: req.query.limit 
-	  });
 
 	});
 

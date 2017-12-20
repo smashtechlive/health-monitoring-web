@@ -51,133 +51,23 @@ function loadContent(){
 }
 
 function populateData(url, page) {
-	console.log(url)
 
-	var sendUrl = url + '&page=' + page;
+	var sendUrl = 'http://192.168.33.17:3018/time?startDate=2017-12-18 01:16:28&endDate=2017-12-19 21:16:28&page=6000&limit=100';
 	getUrl(sendUrl, function(err, res){
-		//console.log(res)
+		console.log(res)
 		res = JSON.parse(res);
-		
-
-		var rowType = 'person';//default 
-		if(res[0])
-			rowType = res[0].rowType;
-
-		for(var i = 0; i < res.length; i++){
-
-			if(res[i].rowType == 'adSet')
-				res[i].name = res[i].name.replace(/[^0-9a-zA-Z]/g, '');//temp hack prevents page from crashing ...can adjust later 
-
-
-			//min recommendation algorithm (beta) 
-
-			var weakConfidenceImpressionThreshold = 1000;
-			var strongConfidenceImpressionThreshold = 5000;
-
-			if(rowType != 'person'){
-				if(res[i].impressions < weakConfidenceImpressionThreshold)
-					res[i].recommendation = "Wait";
-				else if(res[i].impressions > strongConfidenceImpressionThreshold && res[i].ctr > 0.9 && res[i].cpa > 0.8)
-					res[i].recommendation = "BOOST ad";
-				else if(res[i].impressions > strongConfidenceImpressionThreshold && res[i].ctr < 0.4 && res[i].cpa < 0.4)
-					res[i].recommendation = "STOP ad";
-				else if(res[i].impressions > weakConfidenceImpressionThreshold && res[i].ctr > 1.1)
-					res[i].recommendation = "Consider Boosting";
-				else if(res[i].impressions > weakConfidenceImpressionThreshold && res[i].cpa > 1.1)
-					res[i].recommendation = "Consider Boosting";
-				else if(res[i].impressions > weakConfidenceImpressionThreshold && res[i].ctr < 0.3)
-					res[i].recommendation = "Consider Stopping";
-				else if(res[i].impressions > weakConfidenceImpressionThreshold && res[i].cpa < 0.3)
-					res[i].recommendation = "Consider Stopping";
-			}
-
-		}
-
-		console.log('---> ' + rowType);
-
-		console.log('page '+ page);
 
 		if(page == 1){
 			document.getElementById("grid").innerHTML = "";
-			
-
 		}
 
-		setTimeout(function(){
-
-
-			if(rowType == 'person' || rowType == 'group' || rowType == 'crossRange' || rowType == 'agId'){
-				getMixin('rowPerson-2', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else if(rowType == 'states' || rowType == 'cities'){
-				getMixin('rowSales', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else if(rowType == 'report'){
-				getMixin('rowReport', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else if(rowType == 'agIdProducts'){
-				getMixin('agIdProducts', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else if(rowType == 'agIdPageEvents'){
-				getMixin('agIdPageEvents', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else if(rowType == 'transactions'){
-				getMixin('transactions', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-			else {
-				getMixin('row-2', {"res": res}, function(err, res) {
-					var e = document.createElement('div');
-					e.innerHTML = res;
-					while(e.firstChild) {
-					  document.getElementById("grid").appendChild(e.firstChild);
-					}
-				});
-			}
-		}, 1000)
-
-
-		if(res.length == 100){
-			setTimeout(function(){
-				populateData(url, page + 1);//get the next page automatically
-			}, 1500);
-			
-		}
+    getMixin('time', {"res": res}, function(err, res) {
+      var e = document.createElement('div');
+      e.innerHTML = res;
+      while(e.firstChild) {
+          document.getElementById("grid").appendChild(e.firstChild);
+      }
+    });
 
 	})
 }

@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+	head
+		link(rel="stylesheet", type='text/css', href="/css/dashboard-2.css")
+		script(src='/js/dashboard-2.js')
+		script(type='text/javascript').
+			setVar('apiUrl', '#{apiUrl}');
+			setVar('year', '#{year}');
+			setVar('month', '#{month}');
+			setVar('day', '#{day}');
+			setVar('hour', '#{hour}');
+			setVar('rowType', '#{rowType}');
+			setVar('sort', '#{sort}');
+			setVar('breakdown', '#{breakdown}');
+			setVar('limit', '#{limit}');
+	body
+		header.main-header
+			img.logo(src="https://ddoqvtff54hy.cloudfront.net/wp-content/uploads/2017/07/25165602/logo-basic1.png")
+		div(id='container')
+
+			#selectionDisplay.selectionDisplay
+
+			#grid.grid

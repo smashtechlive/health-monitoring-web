@@ -52,8 +52,11 @@ function loadContent(){
 
 function populateData(url, page) {
 
-	var sendUrl = 'http://192.168.33.17:3018/time?startDate=2017-12-18 01:16:28&endDate=2017-12-19 21:16:28&page=6000&limit=100';
-	getUrl(sendUrl, function(err, res){
+	var sendUrl = 'http://192.168.33.17:3018/time?startDate=2017-12-18%2001:16:28&endDate=2017-12-19%2021:16:28&page=6000&limit=100';
+  var sendResultUrl ='http://192.168.33.17:3018/results?startDate=2017-12-18%2001:16:28&endDate=2017-12-19%2021:16:28&page=6000&limit=100'
+  var sendSpeedUrl ='http://192.168.33.17:3018/results?startDate=2017-12-18%2001:16:28&endDate=2017-12-19%2021:16:28&page=6000&limit=100'
+  var sendMemoryUrl ='http://192.168.33.17:3018/results?startDate=2017-12-18%2001:16:28&endDate=2017-12-19%2021:16:28&page=6000&limit=100'
+  getUrl(sendUrl, function(err, res){
 		console.log(res)
 		res = JSON.parse(res);
 
@@ -109,92 +112,23 @@ function generateReport() {
 
 	let daySelect = document.getElementById('daySelect')
 	let day = daySelect.value
+  
+  let nameSelect = document.getElementById('nameSelect')
+  let name = nameSelect.value
 
-	let hourSelect = document.getElementById('hourSelect')
-	let hourValue = hourSelect.value
+	let sourceSelect = document.getElementById('sourceSelect')
+	let source = sourceSelect.value
 
-	let rowSelect = document.getElementById('rowSelect')
-	let rowType = rowSelect.value
-
-	let dataSelect = document.getElementById('dataSelect')
-	let sort = dataSelect.value
+	let valueSelect = document.getElementById('valueSelect')
+	let value = valueSelect.value
 
 	let limit = 100;//page cannot handle more otherwise get mixin function fails because url string too long since data goes into the mixin url request
 
-	let breakdown = 'hour'
 
 
 	//NOT else if here 
 
-	if(hourValue == 'all')
-		breakdown = 'day';
-	if(day == 'all')
-		breakdown = 'month';
-	if(month == 'all')
-		breakdown = 'year';
-
-	let hour = '00';
-
-
-	if(hourValue == '12am')
-		hour = '00';
-	else if(hourValue == '1am')
-		hour = '01';
-	else if(hourValue == '2am')
-		hour = '02';
-	else if(hourValue == '3am')
-		hour = '03';
-	else if(hourValue == '4am')
-		hour = '04';
-	else if(hourValue == '5am')
-		hour = '05';
-	else if(hourValue == '6am')
-		hour = '06';
-	else if(hourValue == '7am')
-		hour = '07';
-	else if(hourValue == '8am')
-		hour = '08';
-	else if(hourValue == '9am')
-		hour = '09';
-	else if(hourValue == '10am')
-		hour = '10';
-	else if(hourValue == '11am')
-		hour = '11';
-	else if(hourValue == '12pm')
-		hour = '12';
-	else if(hourValue == '1pm')
-		hour = '13';
-	else if(hourValue == '2pm')
-		hour = '14';
-	else if(hourValue == '3pm')
-		hour = '15';
-	else if(hourValue == '4pm')
-		hour = '16';
-	else if(hourValue == '5pm')
-		hour = '17';
-	else if(hourValue == '6pm')
-		hour = '18';
-	else if(hourValue == '7pm')
-		hour = '19';
-	else if(hourValue == '8pm')
-		hour = '20';
-	else if(hourValue == '9pm')
-		hour = '21';
-	else if(hourValue == '10pm')
-		hour = '22';
-	else if(hourValue == '11pm')
-		hour = '23';
-
-	if(day == 'all')
-		day = '01';
-
-	if(sort == 'revenue')
-		sort = 'sales';//database and API was all built to be called 'sales' but since Kendra said Revenue is better for the dashboard display that is why just for display we use the term revenue
-
-	if(sort == 'roas')
-		sort = 'healthIndex';//database and API was all built to be called 'healthIndex' but roas is the correct term for the dashboard display that is why just for display we use the term roas
-
-	let url = stringifyVariables(year, month, day, hour, rowType, sort, limit, breakdown);
+	let url = stringifyVariables(year, month, day, name, source, value);
 
 	populateData(url, 1)
 }
@@ -214,19 +148,19 @@ function setDefaults() {
 
 		let daySelect = document.getElementById('daySelect')
 		daySelect.value = day
+    
+    let name = document.getElementById('nameSelect')
+		name = 'time'
+		nameSelect.value = name 
 
-		let hourSelect = document.getElementById('hourSelect')
-		hour = 'all'
-		hourSelect.value = hour
-
-		let rowSelect = document.getElementById('rowSelect')
-		rowType = 'person'
-		rowSelect.value = rowType
-
-		let dataSelect = document.getElementById('dataSelect')
-		sort = 'points'
-		dataSelect.value = sort
-
+		let valueSelect = document.getElementById('valueSelect')
+		valuesel = '1'
+    valueSelect.value = valuesel
+    
+		let sourceSelect = document.getElementById('sourceSelect')
+		source = '1'
+    sourceSelect.value = source
+    
 		limit = 100
 		breakdown = 'day'
 		setupUIComplete = true

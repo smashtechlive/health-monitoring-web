@@ -1,13 +1,13 @@
 .row
     .col-md-2
-        label="Year:"
+        label="Start Year:"
         select#yearSelect.form-select
             option(value='0', selected= true) -- Select Year --
             option 2017
             option 2016
             option 2015
     .col-md-2
-        label="Month:"        
+        label="Start Month:"        
         select#monthSelect.form-select
             option(value='0', selected= true) -- Select Month --
             option(value="all") All Months
@@ -24,7 +24,7 @@
             option 11
             option 12
     .col-md-2
-        label="Day:"  
+        label="Start Day:"  
         select#daySelect.form-select
             option(value='0', selected= true) -- Select Day --
             option(value="all") All Days
@@ -60,41 +60,108 @@
             option 30
             option 31
     .col-md-2
-        label="Day:"      
-        select#hourSelect.form-select
-            option(value='0', selected= true) -- Select Hour --
-            option(value="all") All Hours
+        label="End Year:"
+        select#yearSelect.form-select
+            option(value='0', selected= true) -- Select Year --
+            option 2017
+            option 2016
+            option 2015
     .col-md-2
-        label="Select type:"     
-        select#rowSelect.form-select
-            option(value='0', selected= true) -- Sort--
-            option person
-            option group
-            option crossRange
-            option states
-            option report
-            option agId
-            option agIdProducts
-            option agIdPageEvents
-            option transactions
+        label="End Month:"        
+        select#monthSelect.form-select
+            option(value='0', selected= true) -- Select Month --
+            option(value="all") All Months
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
     .col-md-2
-        label="Sort by metric:"   
-        select#dataSelect.form-select
-            option(value='0', selected= true) -- Sort--
-            option impressions
-            option clicks
-            option purchases
-            option spend
-            option sales
-            option ctr
-            option cvr
-            option cpa
-            option aov
-            option spread
-            option cpm
-            option cpi
-            option roas
-            option points
-            option sentence
-    //button#generateReport.btn.generateReport="Generate Report"
+        label="End Day:"  
+        select#daySelect.form-select
+            option(value='0', selected= true) -- Select Day --
+            option(value="all") All Days
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
+            option 13
+            option 14
+            option 15
+            option 16
+            option 17
+            option 18
+            option 19
+            option 20
+            option 21
+            option 22
+            option 23
+            option 24
+            option 25
+            option 26
+            option 27
+            option 28
+            option 29
+            option 30
+            option 31
+    .col-md-2
+        div.form-group
+                label(for='name') Name:
+                input#nameSelect.form-control(type='text', placeholder='search name' name='name')
+    .col-md-2
+        div.form-group
+                label(for='value') Value:
+                input#valueSelect.form-control(type='text', placeholder='1' name='value')            
+    .col-md-2
+        div.form-group
+                label(for='source') Source:
+                input#sourceSelect.form-control(type='text', placeholder='log-consumer' name='source')
+//- .col-md-2
+//-     label="Select type:"     
+//-     select#rowSelect.form-select
+//-         option(value='0', selected= true) -- Sort--
+//-         option person
+//-         option group
+//-         option crossRange
+//-         option states
+//-         option report
+//-         option agId
+//-         option agIdProducts
+//-         option agIdPageEvents
+//-         option transactions
+//-     .col-md-2
+//-         label="Sort by metric:"   
+//-         select#dataSelect.form-select
+//-             option(value='0', selected= true) -- Sort--
+//-             option impressions
+//-             option clicks
+//-             option purchases
+//-             option spend
+//-             option sales
+//-             option ctr
+//-             option cvr
+//-             option cpa
+//-             option aov
+//-             option spread
+//-             option cpm
+//-             option cpi
+//-             option roas
+//-             option points
+//-             option sentence
+button#generateReport.btn.generateReport="Generate Report"
 .clearfix(style={'height': '50px'})

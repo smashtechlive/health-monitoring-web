@@ -7,14 +7,14 @@ div(class='grid')
         p Value
     .cell.th.grey-bg
         p Source
-
-- for(var i = 0; i < res.length; i++)
-    div(class='container')
+	 
+div(class='wrapper') 
+    - for(var i = 0; i < res.length; i++)
         div(class='cell')
             p #{res[i].utcDateTime}
         div(class='cell')
-            p #{res[i].name}
+            p #{res[i].field.name}
         div(class='cell')
-            p #{res[i].value}
+            p #{res[i].field.value}
         div(class='cell')
             p #{res[i].source}	

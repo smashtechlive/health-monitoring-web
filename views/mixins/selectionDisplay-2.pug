@@ -1,15 +1,15 @@
 .row
     .col-md-2
         label="Start Year:"
-        select#yearSelect.form-select
+        select#yearSelect1.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Year --
             option 2017
             option 2016
             option 2015
     .col-md-2
         label="Start Month:"        
-        select#monthSelect.form-select
-            option(value='0', selected= true) -- Select Month --
+        select#monthSelect1.form-select(onchange='generateReport()')
+            option(value='0', selected= true, required) -- Select Month --
             option(value="all") All Months
             option 01
             option 02
@@ -25,7 +25,7 @@
             option 12
     .col-md-2
         label="Start Day:"  
-        select#daySelect.form-select
+        select#daySelect1.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Day --
             option(value="all") All Days
             option 01
@@ -60,15 +60,96 @@
             option 30
             option 31
     .col-md-2
+        label="Start Hour:"  
+        select#hourSelect1.form-select(onchange='generateReport()')
+            option(value='0', selected= true) -- from hour --
+            option(value="all") All Days
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
+    .col-md-2
+        label="Start Minutes:"  
+        select#minuteSelect1.form-select(onchange='generateReport()')
+            option(value='0', selected= true) --  from minutes --
+            option(value="all") All Days
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
+            option 13
+            option 14
+            option 15
+            option 16
+            option 17
+            option 18
+            option 19
+            option 20
+            option 21
+            option 22
+            option 23
+            option 24
+            option 25
+            option 26
+            option 27
+            option 28
+            option 29
+            option 30
+            option 31
+            option 32
+            option 33
+            option 34
+            option 35
+            option 36
+            option 37
+            option 38
+            option 39
+            option 40
+            option 41
+            option 42
+            option 43
+            option 44
+            option 45
+            option 46
+            option 47
+            option 48
+            option 49
+            option 50
+            option 51
+            option 52
+            option 53
+            option 54
+            option 55
+            option 56
+            option 57
+            option 58
+            option 59
+    .col-md-2
         label="End Year:"
-        select#yearSelect.form-select
+        select#yearSelect2.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Year --
             option 2017
             option 2016
             option 2015
     .col-md-2
         label="End Month:"        
-        select#monthSelect.form-select
+        select#monthSelect2.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Month --
             option(value="all") All Months
             option 01
@@ -85,7 +166,7 @@
             option 12
     .col-md-2
         label="End Day:"  
-        select#daySelect.form-select
+        select#daySelect2.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Day --
             option(value="all") All Days
             option 01
@@ -120,17 +201,94 @@
             option 30
             option 31
     .col-md-2
-        div.form-group
-                label(for='name') Name:
-                input#nameSelect.form-control(type='text', placeholder='search name' name='name')
+        label="End Hour:"  
+        select#hourSelect2.form-select
+            option(value='0', selected= true) -- End Hour --
+            option(value="all") All Days
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
+    .col-md-2
+        label="End Minutes:"  
+        select#minuteSelect2.form-select
+            option(value='0', selected= true) -- Select Day --
+            option(value="all") All Days
+            option 01
+            option 02
+            option 03
+            option 04
+            option 05
+            option 06
+            option 07
+            option 08
+            option 09
+            option 10
+            option 11
+            option 12
+            option 13
+            option 14
+            option 15
+            option 16
+            option 17
+            option 18
+            option 19
+            option 20
+            option 21
+            option 22
+            option 23
+            option 24
+            option 25
+            option 26
+            option 27
+            option 28
+            option 29
+            option 30
+            option 31
+            option 32
+            option 33
+            option 34
+            option 35
+            option 36
+            option 37
+            option 38
+            option 39
+            option 40
+            option 41
+            option 42
+            option 43
+            option 44
+            option 45
+            option 46
+            option 47
+            option 48
+            option 49
+            option 50
+            option 51
+            option 52
+            option 53
+            option 54
+            option 55
+            option 56
+            option 57
+            option 58
+            option 59
     .col-md-2
         div.form-group
-                label(for='value') Value:
-                input#valueSelect.form-control(type='text', placeholder='1' name='value')            
+                label(for='name', required) Name:
+                input#nameSelect.form-control(type='text', placeholder='search name' name='name' onchange='generateReport()')
     .col-md-2
         div.form-group
-                label(for='source') Source:
-                input#sourceSelect.form-control(type='text', placeholder='log-consumer' name='source')
+                label(for='threshold') Threshold(optional):
+                input#thresholdSelect.form-control(type='text', placeholder='optional' name='threshold' onchange='generateReport()')
 //- .col-md-2
 //-     label="Select type:"     
 //-     select#rowSelect.form-select
@@ -163,5 +321,7 @@
 //-             option roas
 //-             option points
 //-             option sentence
-button#generateReport.btn.generateReport="Generate Report"
+//-div(class='gen')
+//-    button(class='btn', onclick='generateReport()') Generate Report
 .clearfix(style={'height': '50px'})
+ 

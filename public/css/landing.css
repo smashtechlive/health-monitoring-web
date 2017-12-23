@@ -54,6 +54,11 @@ label {
 	height: 25px;
 	float: left;
 }
+h2 {
+	margin-left: 200px;
+	width: 100%;
+    text-align:center;
+}
 .recoCell {
 	border: 1px solid #ddd;
 	padding: 3px;
@@ -151,7 +156,7 @@ body {
 .container {
     width:100%;
     height: 100%;
-    margin: 0 auto;
+    margin-left: 200px;
     display: inline-block;
 }
 
@@ -161,7 +166,8 @@ body {
     justify-content: space-around; */
     align-content: center;
     padding-top:20px; 
-    width: 1500px;  
+	width: 1500px;  
+	margin-left: 200px;
     display: block; /* or inline-block */
     text-overflow: ellipsis;
     word-wrap: break-word; 

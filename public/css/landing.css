@@ -12,6 +12,9 @@ p {
 	width: 16.6666667%;
 	vertical-align: top;
 }
+.pre {
+    display: none;
+}
 label {
 	display: block;
 	margin-bottom: 5px;
@@ -161,8 +164,7 @@ body {
     width: 1500px;  
     display: block; /* or inline-block */
     text-overflow: ellipsis;
-    word-wrap: break-word;
-    overflow: hidden;
+    word-wrap: break-word; 
     max-height: 36em;
     line-height: 1.99em;
 }

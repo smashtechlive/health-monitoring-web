@@ -1,3 +1,4 @@
+h2 RESPONSE TIME
 div(class='grid')
     .cell.th.grey-bg
         p UTC Time
@@ -7,14 +8,14 @@ div(class='grid')
         p Value
     .cell.th.grey-bg
         p Source
-	 
-div(class='wrapper') 
+
     - for(var i = 0; i < res.length; i++)
-        div(class='cell')
-            p #{res[i].utcDateTime}
-        div(class='cell')
-            p #{res[i].field.name}
-        div(class='cell')
-            p #{res[i].field.value}
-        div(class='cell')
-            p #{res[i].source}	
+        div(class='container')
+            div(class='cell')
+                p #{res[i].utcDateTime}
+            div(class='cell')
+                p #{res[i].name}
+            div(class='cell')
+                p #{res[i].value}
+            div(class='cell')
+                p #{res[i].source}	

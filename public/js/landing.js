@@ -154,23 +154,22 @@ function populateData(url, page, name) {
   getUrl(url, function (err, res) {
     console.log(res)
     res = JSON.parse(res);
+    if (name == 'time') {
+      res.forEach(function (obj) {
+        obj.value = millisToMinutesAndSeconds(obj.value); //convert miliseconds to minutes
+      })
+      console.log('time Response' + res)
+    } else if (name == 'cpu' || name == 'memory') {
+      res.forEach(function (obj) {
+        obj.value = Number(obj.value.toFixed(2));   // convert ot nearest 2 decimal places
+      })
+    }
+
     if (page == 1) {
       document.getElementById("grid").innerHTML = "";
     }
+
     getMixin(name, { "res": res }, function (err, res) {
-      console.log(res)
-      if (name == 'time') {
-        for (var i = 0; i < res.length; i++) {
-          if (typeof res[i].value == 'number') {
-            res[i].value = millisToMinutesAndSeconds(res[i].value)
-          }
-        }
-      } else if (name == 'cpu' || name == 'memory') {
-        JSON.stringify(res, function (key, val) {
-          return val.toFixed ? Number(val.toFixed(2)) : val;
-        })
-      }
-      
       var e = document.createElement('div');
       e.innerHTML = res;
       while (e.firstChild) {
@@ -217,8 +216,7 @@ function getUrl(url, cb) {
 
 function generateReport(name) {
 
-  document.getElementById(name).setAttribute(
-    "style", "font-style: italic;background:#e71791; color:#efefef;");
+
 
   let yearSelect1 = document.getElementById('yearSelect1')
   startYear = yearSelect1.value

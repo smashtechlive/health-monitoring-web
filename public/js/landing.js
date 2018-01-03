@@ -74,6 +74,9 @@ function setupUI() {
     }
   }, function (err, res) {
     var e = document.createElement('div');
+
+    // timeMin=moment.duration(res.value);
+    // timeMin = timeMin.minutes();
     e.innerHTML = res;
     while (e.firstChild) {
       document.getElementById("grid").appendChild(e.firstChild);
@@ -99,6 +102,9 @@ function setupUI() {
       "name": "cpu", "threshold": 1
     }
   }, function (err, res) {
+    JSON.stringify(res, function (key, val) {
+      return val.toFixed ? Number(val.toFixed(2)) : val;
+    })
     var e = document.createElement('div');
     e.innerHTML = res;
     while (e.firstChild) {
@@ -113,6 +119,8 @@ function setupUI() {
     }
   }, function (err, res) {
     var e = document.createElement('div');
+
+
     e.innerHTML = res;
     while (e.firstChild) {
       document.getElementById("grid").appendChild(e.firstChild);
@@ -132,7 +140,11 @@ function setupUI() {
     }
   });
 }
-
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 function loadContent(startDate, endDate, name) {
   url = stringifyVariables(startDate, endDate, name);
   populateData(url, 1)
@@ -142,12 +154,23 @@ function populateData(url, page, name) {
   getUrl(url, function (err, res) {
     console.log(res)
     res = JSON.parse(res);
-
-
     if (page == 1) {
       document.getElementById("grid").innerHTML = "";
     }
     getMixin(name, { "res": res }, function (err, res) {
+      console.log(res)
+      if (name == 'time') {
+        for (var i = 0; i < res.length; i++) {
+          if (typeof res[i].value == 'number') {
+            res[i].value = millisToMinutesAndSeconds(res[i].value)
+          }
+        }
+      } else if (name == 'cpu' || name == 'memory') {
+        JSON.stringify(res, function (key, val) {
+          return val.toFixed ? Number(val.toFixed(2)) : val;
+        })
+      }
+      
       var e = document.createElement('div');
       e.innerHTML = res;
       while (e.firstChild) {
@@ -196,7 +219,7 @@ function generateReport(name) {
 
   document.getElementById(name).setAttribute(
     "style", "font-style: italic;background:#e71791; color:#efefef;");
-  
+
   let yearSelect1 = document.getElementById('yearSelect1')
   startYear = yearSelect1.value
 

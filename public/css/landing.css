@@ -101,6 +101,7 @@ body {
 	margin: 0;
 }
 .main-header {
+	width: 100%;
 	background: #e71791;
 	padding: 10px 0;
 	text-align: center;
@@ -146,6 +147,14 @@ body {
 	background-color:antiquewhite; 
 	padding: 100px 0 0 350px;
 	/* padding-top: 50px; */
+}
+
+.title {
+	color: #f2f2f2; background: #e71791; 
+	width:99%;
+	font-size: 55px; line-height: 74px; margin: 0 5px 24px; float: left; 
+	padding: 10px; margin: 0 5px 24px; font-family: 'Libre Baskerville', serif;
+	text-align: center;
 }
 
 .header {

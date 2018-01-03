@@ -33,6 +33,7 @@ domReady(function () {
 
 
 function setupUI() {
+
   function createDate(date) {
     day = ('0' + (date.getDate())).slice(-2)
     month = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -58,8 +59,6 @@ function setupUI() {
     "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
     "name": "time", "threshold": 1
   }
-  console.log(data)
-
   getMixin('selectionDisplay-2', data, function (err, res) {
     document.getElementById("selectionDisplay").innerHTML = res;
     setTimeout(function () {
@@ -74,9 +73,6 @@ function setupUI() {
     }
   }, function (err, res) {
     var e = document.createElement('div');
-
-    // timeMin=moment.duration(res.value);
-    // timeMin = timeMin.minutes();
     e.innerHTML = res;
     while (e.firstChild) {
       document.getElementById("grid").appendChild(e.firstChild);
@@ -158,7 +154,6 @@ function populateData(url, page, name) {
       res.forEach(function (obj) {
         obj.value = millisToMinutesAndSeconds(obj.value); //convert miliseconds to minutes
       })
-      console.log('time Response' + res)
     } else if (name == 'cpu' || name == 'memory') {
       res.forEach(function (obj) {
         obj.value = Number(obj.value.toFixed(2));   // convert ot nearest 2 decimal places
@@ -168,7 +163,9 @@ function populateData(url, page, name) {
     if (page == 1) {
       document.getElementById("grid").innerHTML = "";
     }
-
+    res.sort(function (a, b) {
+      return (a.value) - (b.value);
+    });
     getMixin(name, { "res": res }, function (err, res) {
       var e = document.createElement('div');
       e.innerHTML = res;

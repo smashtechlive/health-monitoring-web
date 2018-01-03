@@ -2,9 +2,9 @@
     .col-md-2
         label="Start Year:"
         select#yearSelect1.form-select(onchange='generateReport()')
-            option(value='0', selected= true) -- Select Year --
-            option 2018
-            option 2017
+            option(value='0' ) -- Select Year --
+            option(selected = true) 2018 
+            option 2017 
             option 2016
             option 2015
     .col-md-2
@@ -12,7 +12,7 @@
         select#monthSelect1.form-select(onchange='generateReport()')
             option(value='0', selected= true, required) -- Select Month --
             option(value="all") All Months
-            option 01
+            option(selected = true)  01
             option 02
             option 03
             option 04
@@ -29,7 +29,7 @@
         select#daySelect1.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Day --
             option(value="all") All Days
-            option 01
+            option(selected = true) 01
             option 02
             option 03
             option 04
@@ -74,7 +74,7 @@
             option 07
             option 08
             option 09
-            option 10
+            option(selected = true) 10
             option 11
             option 12
     .col-md-2
@@ -129,7 +129,7 @@
             option 45
             option 46
             option 47
-            option 48
+            option(selected = true) 48
             option 49
             option 50
             option 51
@@ -145,7 +145,7 @@
         label="End Year:"
         select#yearSelect2.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Year --
-            option 2018
+            option(selected = true) 2018
             option 2017
             option 2016
             option 2015
@@ -154,7 +154,7 @@
         select#monthSelect2.form-select(onchange='generateReport()')
             option(value='0', selected= true) -- Select Month --
             option(value="all") All Months
-            option 01
+            option(selected = true) 01
             option 02
             option 03
             option 04
@@ -173,7 +173,7 @@
             option(value="all") All Days
             option 01
             option 02
-            option 03
+            option(selected = true) 03
             option 04
             option 05
             option 06
@@ -209,7 +209,7 @@
             option(value="all") All Days
             option 01
             option 02
-            option 03
+            option(selected = true) 03
             option 04
             option 05
             option 06
@@ -227,7 +227,7 @@
             option 01
             option 02
             option 03
-            option 04
+            option(selected = true) 04
             option 05
             option 06
             option 07
@@ -287,40 +287,7 @@
         div.form-group
                 label(for='threshold') Threshold(optional):
                 input#thresholdSelect.form-control(type='text', placeholder='optional' name='threshold' onchange='generateReport()')
-//- .col-md-2
-//-     label="Select type:"     
-//-     select#rowSelect.form-select
-//-         option(value='0', selected= true) -- Sort--
-//-         option person
-//-         option group
-//-         option crossRange
-//-         option states
-//-         option report
-//-         option agId
-//-         option agIdProducts
-//-         option agIdPageEvents
-//-         option transactions
-//-     .col-md-2
-//-         label="Sort by metric:"   
-//-         select#dataSelect.form-select
-//-             option(value='0', selected= true) -- Sort--
-//-             option impressions
-//-             option clicks
-//-             option purchases
-//-             option spend
-//-             option sales
-//-             option ctr
-//-             option cvr
-//-             option cpa
-//-             option aov
-//-             option spread
-//-             option cpm
-//-             option cpi
-//-             option roas
-//-             option points
-//-             option sentence
-//-div(class='gen')
-//-    button(class='btn', onclick='generateReport()') Generate Report
+ 
 .clearfix(style={'height': '50px'})
 .tab
   button.tablinks(id = 'time' onclick="generateReport('time')") Response Time

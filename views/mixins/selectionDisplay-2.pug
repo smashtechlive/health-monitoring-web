@@ -283,10 +283,6 @@
             option 59
     .col-md-2
         div.form-group
-                label(for='name', required) Name:
-                input#nameSelect.form-control(type='text', placeholder='search name' name='name' onchange='generateReport()')
-    .col-md-2
-        div.form-group
                 label(for='threshold') Threshold(optional):
                 input#thresholdSelect.form-control(type='text', placeholder='optional' name='threshold' onchange='generateReport()')
 //- .col-md-2
@@ -324,4 +320,9 @@
 //-div(class='gen')
 //-    button(class='btn', onclick='generateReport()') Generate Report
 .clearfix(style={'height': '50px'})
- 
+.tab
+  button.tablinks(id = 'time' onclick="generateReport('time')") Response Time
+  button.tablinks(id = 'cpu' onclick="generateReport('cpu')") CPU
+  button.tablinks(id = 'memory' onclick="generateReport('memory')") Memory
+  button.tablinks(id = 'storage' onclick="generateReport('storage')") Storage
+  button.tablinks(id = 'requests' onclick="generateReport('requests')") Requests

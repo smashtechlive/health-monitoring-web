@@ -13,8 +13,6 @@ function setVar(varName, varValue) {
     month = varValue;
   else if (varName == 'day')
     day = varValue;
-  else if (varName == 'rowType')
-    rowType = varValue;
   else if (varName == 'sort')
     sort = varValue;
   else if (varName == 'threshold')
@@ -61,65 +59,78 @@ function setupUI() {
     "name": "time", "threshold": 1
   }
   console.log(data)
-   
+
   getMixin('selectionDisplay-2', data, function (err, res) {
     document.getElementById("selectionDisplay").innerHTML = res;
     setTimeout(function () {
       afterSetupUI()
     }, 500)
   });
-  getMixin('time', { "res": {"yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
-  "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
-  "name": "responseTime", "threshold": 1} }, function (err, res) {
-      var e = document.createElement('div');
-      e.innerHTML = res;
-      while (e.firstChild) {
-        document.getElementById("grid").appendChild(e.firstChild);
-      }
-    });
-  getMixin('requests', { "res": {"yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
-  "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
-  "name": "requests", "threshold": 1} }, function (err, res) {
-      var e = document.createElement('div');
-      e.innerHTML = res;
-      while (e.firstChild) {
-        document.getElementById("grid").appendChild(e.firstChild);
-      }
-    });
-    getMixin('cpu', { "res": {"yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
-  "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
-  "name": "cpu", "threshold": 1} }, function (err, res) {
-      var e = document.createElement('div');
-      e.innerHTML = res;
-      while (e.firstChild) {
-        document.getElementById("grid").appendChild(e.firstChild);
-      }
-    });
-    getMixin('memory', { "res": {"yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
-  "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
-  "name": "memory", "threshold": 1} }, function (err, res) {
-      var e = document.createElement('div');
-      e.innerHTML = res;
-      while (e.firstChild) {
-        document.getElementById("grid").appendChild(e.firstChild);
-      }
-    });
-    getMixin('storage', { "res": {"yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
-  "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
-  "name": "storage", "threshold": 1} }, function (err, res) {
-      var e = document.createElement('div');
-      e.innerHTML = res;
-      while (e.firstChild) {
-        document.getElementById("grid").appendChild(e.firstChild);
-      }
-    });
-// let statArray = ['time','storage','requests','cpu']  
-
-// statArray.forEach(element => {
-//   console.log(element)
-//   loadContent(startDateObject[0], endDateObject[0], element)
-// });
-  
+  getMixin('time', {
+    "res": {
+      "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
+      "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
+      "name": "responseTime", "threshold": 1
+    }
+  }, function (err, res) {
+    var e = document.createElement('div');
+    e.innerHTML = res;
+    while (e.firstChild) {
+      document.getElementById("grid").appendChild(e.firstChild);
+    }
+  });
+  getMixin('requests', {
+    "res": {
+      "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
+      "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
+      "name": "requests", "threshold": 1
+    }
+  }, function (err, res) {
+    var e = document.createElement('div');
+    e.innerHTML = res;
+    while (e.firstChild) {
+      document.getElementById("grid").appendChild(e.firstChild);
+    }
+  });
+  getMixin('cpu', {
+    "res": {
+      "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
+      "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
+      "name": "cpu", "threshold": 1
+    }
+  }, function (err, res) {
+    var e = document.createElement('div');
+    e.innerHTML = res;
+    while (e.firstChild) {
+      document.getElementById("grid").appendChild(e.firstChild);
+    }
+  });
+  getMixin('memory', {
+    "res": {
+      "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
+      "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
+      "name": "memory", "threshold": 1
+    }
+  }, function (err, res) {
+    var e = document.createElement('div');
+    e.innerHTML = res;
+    while (e.firstChild) {
+      document.getElementById("grid").appendChild(e.firstChild);
+    }
+  });
+  getMixin('storage', {
+    "res": {
+      "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
+      "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
+      "name": "storage", "threshold": 1
+    }
+  }, function (err, res) {
+    var e = document.createElement('div');
+    e.innerHTML = res;
+    while (e.firstChild) {
+      document.getElementById("grid").appendChild(e.firstChild);
+    }
+  });
 }
 
 function loadContent(startDate, endDate, name) {
@@ -132,6 +143,7 @@ function populateData(url, page, name) {
     console.log(res)
     res = JSON.parse(res);
 
+
     if (page == 1) {
       document.getElementById("grid").innerHTML = "";
     }
@@ -142,8 +154,14 @@ function populateData(url, page, name) {
         document.getElementById("grid").appendChild(e.firstChild);
       }
     });
-    
+
   })
+}
+
+function showMoreLines() {
+  var elem = document.getElementById('show');
+  console.log(elem)
+  elem.style.maxHeight = 'none';
 }
 
 function afterSetupUI() {
@@ -174,27 +192,30 @@ function getUrl(url, cb) {
   }
 }
 
-function generateReport() {
-  console.log('generatereport');
-  yearSelect1 = document.getElementById('yearSelect1')
-  startYear = yearSelect1.value  
+function generateReport(name) {
 
-  yearSelect2 = document.getElementById('yearSelect2')
-  endYear = yearSelect2.value 
+  document.getElementById(name).setAttribute(
+    "style", "font-style: italic;background:#e71791; color:#efefef;");
+  
+  let yearSelect1 = document.getElementById('yearSelect1')
+  startYear = yearSelect1.value
 
-  monthSelect1 = document.getElementById('monthSelect1')
-  startMonth = monthSelect1.value 
+  let yearSelect2 = document.getElementById('yearSelect2')
+  endYear = yearSelect2.value
 
-  monthSelect2 = document.getElementById('monthSelect2')
-  endMonth = monthSelect2.value  
+  let monthSelect1 = document.getElementById('monthSelect1')
+  startMonth = monthSelect1.value
 
-  daySelect1 = document.getElementById('daySelect1')
+  let monthSelect2 = document.getElementById('monthSelect2')
+  endMonth = monthSelect2.value
+
+  let daySelect1 = document.getElementById('daySelect1')
   startDay = daySelect1.value
 
-  daySelect2 = document.getElementById('daySelect2')
+  let daySelect2 = document.getElementById('daySelect2')
   endDay = daySelect2.value
 
-  hourSelect1 = document.getElementById('hourSelect1')
+  let hourSelect1 = document.getElementById('hourSelect1')
   startHour = hourSelect1.value
   minuteSelect1 = document.getElementById('minuteSelect1')
   startMinutes = minuteSelect1.value
@@ -206,14 +227,13 @@ function generateReport() {
   let startDate = startYear + '-' + startMonth + '-' + startDay + '%20' + startHour + ':' + startMinutes + ':00'
   console.log(startDate)
   let endDate = endYear + '-' + endMonth + '-' + endDay + '%20' + endHour + ':' + endMinutes + ':00'
-  //End date created using hours even when it is not visible in the api call
 
-  nameSelect = document.getElementById('nameSelect')
-  let name = nameSelect.value
   let thresholdSelect = document.getElementById('thresholdSelect')
   let threshold = thresholdSelect.value
 
-  let limit = 100;//page cannot handle more otherwise get mixin function fails because url string too long since data goes into the mixin url request
+
+
+  let limit = 10;//page cannot handle more otherwise get mixin function fails because url string too long since data goes into the mixin url request
   //NOT else if here 
 
   let url = stringifyVariables(startDate, endDate, name, threshold);
@@ -221,11 +241,11 @@ function generateReport() {
   populateData(url, 1, name)
 }
 function stringifyVariables(startDate, endDate, name, threshold) {
-if(threshold==undefined){
-  threshold = null;
-}
+  if (threshold == undefined) {
+    threshold = null;
+  }
   url = (apiUrl + '/' + name + '?startDateTime=' + startDate + '&endDateTime=' + endDate + '&page=' + page + '&limit=' + limit + '&threshold=' + threshold);
-  console.log(url)
+  // console.log(url)
   return url;
 }
 

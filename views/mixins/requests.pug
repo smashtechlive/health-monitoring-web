@@ -1,21 +1,22 @@
 h2 REQUESTS
-div(class='grid')
-    .cell.th.grey-bg
-        p UTC Time
-    .cell.th.grey-bg
-        p Name
-    .cell.th.grey-bg
-        p Value
-    .cell.th.grey-bg
-        p Source
-	 
-div(class='wrapper') 
-    - for(var i = 0; i < res.length; i++)
-        div(class='cell')
-            p #{res[i].utcDateTime}
-        div(class='cell')
-            p #{res[i].name}
-        div(class='cell')
-            p #{res[i].value}
-        div(class='cell')
-            p #{res[i].source}	
+    div(class='header')
+        .cell.th.grey-bg
+            p UTC Time
+        .cell.th.grey-bg
+            p Name
+        .cell.th.grey-bg
+            p Value(ms)
+        .cell.th.grey-bg
+            p Source
+    div(id='show')
+        - for(var i = 0; i < res.length; i++)
+            div(class = 'container')
+                div(class='cell')
+                    p #{res[i].utcDateTime}
+                div(class='cell')
+                    p #{res[i].name}
+                div(class='cell')
+                    p #{res[i].value}
+                div(class='cell')
+                    p #{res[i].source}
+    button(onclick="showMoreLines()") Show More

@@ -1,10 +1,11 @@
+button.menuToggle(onclick="menuToggle()") Filters
 .row
     .col-md-2
         label="Start Year:"
         select#yearSelect1.form-select(onchange='generateReport()')
             option(value='0' ) -- Select Year --
-            option(selected = true) 2018 
-            option 2017 
+            option 2018 
+            option(selected = true) 2017 
             option 2016
             option 2015
     .col-md-2
@@ -12,7 +13,7 @@
         select#monthSelect1.form-select(onchange='generateReport()')
             option(value='0', selected= true, required) -- Select Month --
             option(value="all") All Months
-            option(selected = true)  01
+            option 01
             option 02
             option 03
             option 04
@@ -23,7 +24,7 @@
             option 09
             option 10
             option 11
-            option 12
+            option(selected = true) 12
     .col-md-2
         label="Start Day:"  
         select#daySelect1.form-select(onchange='generateReport()')
@@ -173,7 +174,7 @@
             option(value="all") All Days
             option 01
             option 02
-            option(selected = true) 03
+            option 03
             option 04
             option 05
             option 06
@@ -201,7 +202,7 @@
             option 28
             option 29
             option 30
-            option 31
+            option(selected = true) 31
     .col-md-2
         label="End Hour:"  
         select#hourSelect2.form-select
@@ -287,8 +288,7 @@
         div.form-group
                 label(for='threshold') Threshold(optional):
                 input#thresholdSelect.form-control(type='text', placeholder='optional' name='threshold' onchange='generateReport()')
- 
-.clearfix(style={'height': '50px'})
+
 .tab
   button.tablinks(id = 'time' onclick="generateReport('time')") Response Time
   button.tablinks(id = 'cpu' onclick="generateReport('cpu')") CPU

@@ -1,5 +1,5 @@
 var apiUrl = null, startYear = null, startMonth = null, startDay = null, endDay = null, startHour = null, startMinutes = null,
-  endHour = null, endMinutes = null, endYear = null, endMonth = null, threshold = null, name = null,
+  endHour = null, endMinutes = null, endYear = null, endMonth = null, threshold = null, name = null, isOpen = null,
   limit = 100, page = 1, value = null, reportActionsSetup = false, url = null, setupUIComplete = false;
 
 //remember to add a case to this function, as a global variable at the top of the js file and in the pug file 
@@ -33,7 +33,6 @@ domReady(function () {
 
 
 function setupUI() {
-
   function createDate(date) {
     day = ('0' + (date.getDate())).slice(-2)
     month = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -52,8 +51,6 @@ function setupUI() {
   var minute60 = startDate.setMinutes(startDate.getMinutes() - 60);   //using "-60" to subtract 60 minutes from the current time.
   var extract = new Date(minute60);
   startDateObject = createDate(startDate)
-  console.log('StartDefaultDate=', startDateObject);
-  console.log(typeof startDate)
   var data = {
     "yearSelect1": startDateObject[1], "monthSelect1": startDateObject[2], "daySelect1": startDateObject[3], "hourSelect1": startDateObject[4], "minuteSelect1": startDateObject[5],
     "yearSelect2": endDateObject[1], "monthSelect2": endDateObject[2], "daySelect2": endDateObject[3], "hourSelect1": endDateObject[4], "minuteSelect2": endDateObject[5],
@@ -166,6 +163,7 @@ function populateData(url, page, name) {
     res.sort(function (a, b) {
       return (a.value) - (b.value);
     });
+     
     getMixin(name, { "res": res }, function (err, res) {
       var e = document.createElement('div');
       e.innerHTML = res;
@@ -188,7 +186,6 @@ function afterSetupUI() {
 }
 
 function getMixin(mixin, mixinJson, cb) {
-
   var mixinJson = JSON.stringify(mixinJson);
   mixin = encodeURIComponent(mixin);
   var xhr = new XMLHttpRequest();
@@ -265,6 +262,22 @@ function stringifyVariables(startDate, endDate, name, threshold) {
   url = (apiUrl + '/' + name + '?startDateTime=' + startDate + '&endDateTime=' + endDate + '&page=' + page + '&limit=' + limit + '&threshold=' + threshold);
   // console.log(url)
   return url;
+}
+function menuToggle() {
+  let menuItems = document.getElementsByClassName('row');
+  if (!isOpen) {
+    for (var i = 0; i < menuItems.length; i++) {
+      menuItems[i].style.display = "inherit";
+       
+    }
+    isOpen = true;
+  }
+  else {
+    for (var i = 0; i < menuItems.length; i++) {
+      menuItems[i].style.display = "none";
+    }
+    isOpen = false;
+  }
 }
 
 function reportActions() {

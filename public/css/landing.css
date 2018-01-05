@@ -1,16 +1,20 @@
 p {
 	margin: 0px;
 }
-.row {
-	width: 2000px;
-	height: 30px;
-	margin-left: 400px;
-	margin-right: auto;
+.js{
+	min-width: 768px;
+    background-color: #FFF;
+    overflow : hidden;
+     
+    width: 100%;
+    height: 100%;
 }
-.col-md-2 {
-	display: inline-block;
-	width: 16.6666667%;
-	vertical-align: top;
+.row {padding: 2em 0 2em 0;
+}
+
+.subHeader {
+	width: 73%;
+    text-align: center;
 }
 .pre {
     display: none;
@@ -31,7 +35,8 @@ label {
     width: 25em; 
 	/* border: 2px solid #ddd; */
     padding: 10px;
-    font-size:14px;
+	font-size:14px;
+	font-weight: 400;
 	text-align: center;
 	 
 } 
@@ -56,7 +61,13 @@ label {
 	float: left;
 }
 h2 {   
+
+    font-weight: 300;
+    color: #383838;
+    font-family: Pingvetica, "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+	padding: 2rem;
 }
+
 .recoCell {
 	border: 1px solid #ddd;
 	padding: 3px;
@@ -93,49 +104,85 @@ h2 {
 	text-align: center;
 	line-height: 25px;
 }
-
+.menuToggle {
+	text-decoration: none;
+    display: inline-block;
+    width: 100%;
+	position: relative;
+	border-style: none;
+    color: antiquewhite; 
+    background: #444;
+    font-size: 25px;
+    height: 34px;
+    padding: 21px 26px 49px 16px; 
+    cursor: pointer;
+    transition: 0.3s;
+}
 /* UI styling */
-body {
-	font-family: 'helvetica', 'verdana', 'arial', sans-serif;
-	color: #666;
-	margin: 0;
+body {    
+	font-size: 24px;
+    font-weight: 250;
+	line-height: 6px;
+     color: black;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+	height: 100%;
+	font-family: Pingvetica, "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    background-color: #FFF !important;
+    min-width: 768px;
+    -webkit-font-smoothing: antialiased;
+}
+.topbar {
+
+    text-align: center;
+    background: #F7F7F7;
+    border-bottom: 1px solid #E6E6E6;
+    border-left: 1px solid #e6e6e6;
+    color: #383838;
+    font-size: 37px;
+    line-height: 65px;
+    margin-left: 12%;
 }
 .main-header {
-	width: 100%;
+	 
 	background: #e71791;
-	padding: 10px 0;
-	text-align: center;
-	margin-bottom: 20px;
-}
-/* #selectionDisplay {
-	margin-bottom: 200px; 
-} */
-.data-row {
-	background: #efefef;
-	border-radius: 4px;
-	border: 0;
-	margin-bottom: 10px;
-	padding: 5px;
+    height: 12%;
+    width: 12%;
+    text-align: center;
+    display: inline-block;
+    position: fixed;
+
 }
 
-
-.grey-bg {
-	background: #efefef;
+.logo {
+	padding-top: 20px;
 }
-.cell-heading {
-	border: solid 1px #ddd;
-	padding-left: 10px;
-	padding-right: 10px;
-	
-}
+.selectionDisplay {
+	width: 345px;
+    height: 100%;
+    background-color: #383838;
+    display: inline-block;
+    width: 12%;
+    position: absolute;
  
+}
+  
 .cell:hover {
-	background: #e71791;
+	background: #666;
 }
 .grey-bg {
-    background: #e71791;
+    background: #F7F7F7;
 }
 
+#noRecord {
+	content: 'Sorry there were no records found';
+	text-align: center;
+	background-color: #e71791;
+
+}
 .container {
     width:74%;
     height: 100%; 
@@ -144,24 +191,33 @@ body {
     line-height: 1.99em;
 }
 .grid {
-	background-color:antiquewhite; 
-	padding: 100px 0 0 350px;
-	/* padding-top: 50px; */
-}
+     
+    display: inline-block;
+    width: 85%;
+    position: relative;
+    left: 25%;
+	
+    }
 
 .title {
-	color: #f2f2f2; background: #e71791; 
-	width:99%;
-	font-size: 55px; line-height: 74px; margin: 0 5px 24px; float: left; 
-	padding: 10px; margin: 0 5px 24px; font-family: 'Libre Baskerville', serif;
-	text-align: center;
+	color: #867d7d;
+    /* position: absolute; */
+    margin: 50px 0px 0px 997px;
+    padding: 5px;
+    text-align: center;
+    font-family: sans-serif;
+    width: calc(100%-300px);
+    font-size: 55px;
+    line-height: 74px;
+    margin-bottom: 24px;
+    font-family: sans-serif;
+    text-align: center;
+    display: none;
+
 }
 
 .header {
 	width:75%;
-    /* display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around; */
     align-content: center;
 	padding-top:20px; 
 	/* width: 1500px;    */
@@ -179,51 +235,54 @@ body {
  
 
 .form-control, .form-select {
-	height: 60px;
+	border:0px;
+   outline:0px;
+	color:antiquewhite;
+	height: 34px; 
     width: 100%;
-    display: inline-block;
-    margin:15px 3px 20px 0.5px;
-    border: solid 1px #ddd;
-    border-radius: 4px;
-    background: #fff;
-    font-size: 16px;
+    margin: 0.5rem 0 0.5rem 0;
+    background-color: #353131;
+    font-size: 15px;
 }
 .col-md-2 {
-	
-	 padding-right: 60px;;
-	width: 5%; 
-	float: left;
+	color:antiquewhite;
+	font-size:20px; 
+    
+	 
 }
 .wrapper {
     width: 1500px;
     margin-left: 200px;
 }
-
-.tab {
-	margin-top: 200px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+.form-control {
+	width:99%;
 }
-
-/* Style the buttons that are used to open the tab content */
+.tab { 
+     
+    background-color: #353131;
+}
 .tab button {
-	font-size: 24px;
-	padding: 20px 200px 20px 200px;
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
+	background:  #444;
+    color: #bababa;
+	text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    border-style: none;   
+    font-size: 25px;
+    height: 34px;
+    padding: 21px 26px 49px 16px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+	background: #383838;
+    color: #bababa;
 }
 .tab button:focus {
-	background: pink;
+	background: #353131;
   }
 /* Create an active/current tablink class */
 .tab button.active {

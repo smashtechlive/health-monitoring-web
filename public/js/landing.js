@@ -147,6 +147,9 @@ function populateData(url, page, name) {
   getUrl(url, function (err, res) {
     console.log(res)
     res = JSON.parse(res);
+    res.forEach(function(obj){
+      obj.utcDateTime = new Date(obj.utcDateTime).toString();
+    })
     if (name == 'time') {
       res.forEach(function (obj) {
         obj.value = millisToMinutesAndSeconds(obj.value); //convert miliseconds to minutes

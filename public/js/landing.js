@@ -133,10 +133,15 @@ function setupUI() {
     }
   });
 }
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+function millisToMinutesAndSeconds(s) {
+  var ms = s % 1000;
+  s = (s - ms) / 1000;
+  var secs = s % 60;
+  s = (s - secs) / 60;
+  var mins = s % 60;
+   
+
+  return mins + ':' + secs + ':' + ms;
 }
 function loadContent(startDate, endDate, name) {
   url = stringifyVariables(startDate, endDate, name);
@@ -147,8 +152,11 @@ function populateData(url, page, name) {
   getUrl(url, function (err, res) {
     console.log(res)
     res = JSON.parse(res);
-    res.forEach(function(obj){
-      obj.utcDateTime = new Date(obj.utcDateTime).toString();
+    res.forEach(function (obj) {
+      var splitHour = new Date(obj.utcDateTime).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+      var splitDay = new Date(obj.utcDateTime).toString().slice(0, 15);
+      obj.utcDateTime = splitDay + " " + splitHour;
+
     })
     if (name == 'time') {
       res.forEach(function (obj) {
@@ -156,7 +164,7 @@ function populateData(url, page, name) {
       })
     } else if (name == 'cpu' || name == 'memory') {
       res.forEach(function (obj) {
-        obj.value = Number(obj.value.toFixed(2));   // convert ot nearest 2 decimal places
+        obj.value = Number(obj.value.toFixed(0));   // convert ot nearest 2 decimal places
       })
     }
 
